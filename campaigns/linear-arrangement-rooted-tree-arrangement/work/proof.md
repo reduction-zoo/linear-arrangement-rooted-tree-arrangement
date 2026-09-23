@@ -65,8 +65,10 @@ implies source infeasibility, so return source `NO-SOLUTION`. In the special
 empty or singleton permutation. Thus recovery works for every valid target
 output, including alternate trees and negative source thresholds.
 
-The forward map writes `O(n²)` edges and `n+m=O(n²)` vertices, in polynomial
-time and output bits. Arithmetic on `C_n+k+2m` has
+The input JSON explicitly lists all `n` source vertices, including isolated
+ones, so `n` is at most the input length. The forward map writes `O(n²)` edges
+and explicitly lists `n+m=O(n²)` target vertices, in polynomial time and
+`O(n² log n + bitlength(k))` output bits. Arithmetic on `C_n+k+2m` has
 `O(log(n+1)+bitlength(k))` bits. The recovery map follows at most `n+m` parent
 arcs for each original vertex and sorts `n` depths, using
 `O(n(n+m)+n log n)` operations on polynomial-size integers. No solver or state

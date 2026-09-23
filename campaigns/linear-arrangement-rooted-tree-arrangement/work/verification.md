@@ -1,6 +1,7 @@
 # Independent executable verification
 
-Candidate: `work/algorithm.py` and `work/proof.md` from round 001. Commands from
+Candidate: `work/algorithm.py` and `work/proof.md` from round 001, with the
+explicit vertex-list encoding repair of round 002. Commands from
 the repository root:
 
 ```sh
@@ -9,7 +10,7 @@ uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work
 uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work/verify.py --candidate campaigns/linear-arrangement-rooted-tree-arrangement/work/algorithm.py
 ```
 
-Results on 2026-09-23: self-test passed; prepared suite passed 114 source
+Results on 2026-09-23 after the encoding repair: self-test passed; prepared suite passed 114 source
 instances and 188 actual target outputs (150 tree witnesses, 38 NO-SOLUTION,
 74 instances with two distinct optimal target trees). `verify.py` independently
 enumerated all simple source graphs through three vertices and all graphs with
@@ -20,6 +21,8 @@ not import `check.py` or `algorithm.py`; both candidate modes run as subprocesse
 All target trees through six vertices in this extra family were enumerated and
 checked against the target definition before recovery.
 
+All 114 fixed graph meanings retained their seeds, edge sets, thresholds and
+optima; the source and target JSON now explicitly enumerate isolated vertices.
 The prepared suite covers source size up to five and constructed target size
 up to fifteen. Verification is finite, and the generic subset DP is exponential
 test machinery. Neither run proves the universal cost identity; that obligation

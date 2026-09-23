@@ -23,8 +23,31 @@ No other local or board entry addresses explicit vertex-list encoding.
 
 ## Evidence and diagnosis
 
-Pending.
+The original JSON encoded an edgeless graph of order `n` with only `O(log n)`
+digits. The prior output bound therefore needed an unstated explicit-graph
+premise. This was an executable encoding defect, not a counterexample to the
+clique charging lemma. The repaired contract requires a vertex array of length
+`n` on both sides. `algorithm.py` writes that array in every branch, including
+the fixed NO triangle and the singleton YES instance; `proof.md` now bounds
+output bits against the actual input array length. The mathematical map and
+decoder are unchanged.
+
+The pre-implementation self-test failed with `KeyError: 'vertices'`, detecting
+the missing field. After regeneration, the corpus gate again passed 114
+distinct cases (100 random, 14 edge). All source graph meanings, seeds,
+thresholds and independently derived optima match the previous corpus.
+Self-test passed; the prepared loop passed 114 instances, 188 target outputs;
+and the separate brute-force verifier passed 102 instances, 166 target outputs.
+The output counts and YES/NO splits are unchanged; see
+[verification](../../work/verification.md). No target solver result was treated
+as a proof of the size bound.
+
+Outcome: **supported**, pending focused independent re-review of the repaired
+encoding and proof bound. Experience extraction: no new entry; this is an
+encoding obligation specific to the repository contract. The existing
+[clique-spine entry](../../../../research/experience/clique-spine-charging.md)
+remains valid; its use here left the charging argument unchanged.
 
 ## Next action
 
-Repair the executable encoding and bounds, then request focused re-review.
+Commit this repair and request focused re-review, then write the manuscript.

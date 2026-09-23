@@ -1,13 +1,16 @@
 # Prepared independent tests
 
-The corpus contains 114 distinct legal source instances: 100 seeded random
+The corpus contains 114 distinct legal source instances with explicit vertex
+arrays: 100 seeded random
 instances (25 with 3 vertices, 37 with 4, 38 with 5) and 14 edge cases (two
 each with 0, 1 and 4 vertices, four each with 2 and 3 vertices). There are 76
 YES and 38 NO source answers. `generate_cases.py` records a seed on each random
 case and its independent exhaustive optimum. It generates the same case from
 each seed; deduplication makes the retained seeds nonconsecutive. It covers
 empty and edgeless graphs, negative bounds, thresholds below/at/above optimum,
-and multiple optimal arrangements.
+and multiple optimal arrangements. Round 002 added those arrays to the
+encoding of the same 114 graphs; seeds, edge sets, thresholds and optima did
+not change.
 
 `check.py` uses Z3 5.1.0 for its source oracle and a small target encoding. The source
 variables form a permutation of positions; minimizing the exact sum of edge

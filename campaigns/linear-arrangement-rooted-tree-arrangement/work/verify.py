@@ -58,9 +58,10 @@ def main():
             optimum = min(source_cost(order, edges) for order in orders)
             tree_cache = {}
             for bound in (optimum - 1, optimum, optimum + 1):
-                source = {"n": n, "edges": edges, "k": bound}
+                source = {"n": n, "vertices": list(range(n)), "edges": edges, "k": bound}
                 target = call(candidate, source)
                 assert target["n"] >= 1 and target["K"] >= 1
+                assert target.get("vertices") == list(range(target["n"]))
                 assert len({tuple(edge) for edge in target["edges"]}) == len(target["edges"])
                 assert all(0 <= u < v < target["n"] for u, v in target["edges"])
                 key = (target["n"], tuple(map(tuple, target["edges"])))

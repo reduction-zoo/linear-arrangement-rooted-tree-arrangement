@@ -1,11 +1,14 @@
 # Executable problem contract
 
 Vertices have labels `0..n-1`; edges are distinct pairs `[u,v]` with `u<v`.
-The source input is `{"n": n, "edges": [...], "k": k}`, where `n>=0` and
-`k` is an integer. The target input is `{"n": n, "edges": [...], "K": K}`,
-where `n>=1` and `K` is an integer. Integers use ordinary JSON decimal notation
-and represent binary-encoded values for complexity bounds. Malformed inputs are
-outside the legal instance sets.
+The source input is `{"n": n, "vertices": [0,...,n-1], "edges": [...], "k": k}`,
+where `n>=0` and `k` is an integer. The target input is
+`{"n": n, "vertices": [0,...,n-1], "edges": [...], "K": K}`, where `n>=1`
+and `K` is an integer. The vertex array is mandatory and must list all graph
+vertices, including isolated ones. Thus graph order is at most input length;
+the redundant `n` field must equal the array length. Numerical thresholds
+use ordinary JSON decimal notation as a binary-size encoding. Malformed inputs
+are outside the legal instance sets.
 
 Source output is `{"order": [v_1,...,v_n]}` when the listed permutation has
 edge-length sum at most `k`, or the JSON string `"NO-SOLUTION"` exactly when

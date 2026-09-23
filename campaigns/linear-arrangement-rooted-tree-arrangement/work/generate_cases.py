@@ -21,7 +21,7 @@ def main():
     seen = set()
 
     def add(n, edges, k, kind, seed=None):
-        source = {"n": n, "edges": [list(e) for e in edges], "k": k}
+        source = {"n": n, "vertices": list(range(n)), "edges": [list(e) for e in edges], "k": k}
         key = json.dumps(source, sort_keys=True)
         if key in seen:
             return False

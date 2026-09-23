@@ -30,3 +30,4 @@ vertices on that chain before trying to force every auxiliary vertex off it.
 ## Use history
 
 - [Round 001](../../campaigns/linear-arrangement-rooted-tree-arrangement/rounds/001/round.md): originated the lemma; the complete reduction passed finite checks.
+- [Round 002](../../campaigns/linear-arrangement-rooted-tree-arrangement/rounds/002/round.md): the encoding repair left the charging lemma unchanged; no new mathematical effect.

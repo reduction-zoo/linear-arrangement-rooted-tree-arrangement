@@ -7,13 +7,13 @@ import sys
 def forward(source):
     n, edges, k = source["n"], source["edges"], source["k"]
     if k < 0:
-        return {"n": 3, "edges": [[0, 1], [0, 2], [1, 2]], "K": 1}
+        return {"n": 3, "vertices": [0, 1, 2], "edges": [[0, 1], [0, 2], [1, 2]], "K": 1}
     if n <= 1:
-        return {"n": 1, "edges": [], "K": 1}
+        return {"n": 1, "vertices": [0], "edges": [], "K": 1}
     m = len(edges)
     clique = [[u, v] for u in range(n) for v in range(u + 1, n)]
     gadget_edges = [[endpoint, n + i] for i, pair in enumerate(edges) for endpoint in pair]
-    return {"n": n + m, "edges": clique + gadget_edges,
+    return {"n": n + m, "vertices": list(range(n + m)), "edges": clique + gadget_edges,
             "K": n * (n * n - 1) // 6 + k + 2 * m}
 
 

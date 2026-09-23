@@ -204,6 +204,7 @@ def self_test(cases):
     from generate_cases import optimum
     for case in cases:
         source = case["source"]
+        assert source["vertices"] == list(range(source["n"]))
         rng_case = None
         if case["kind"] == "random":
             rng_case = regenerated_random(case["seed"])
@@ -252,7 +253,7 @@ def regenerated_random(seed):
     density = rng.choice((0.2, 0.45, 0.7, 0.95))
     edges = [list(e) for e in itertools.combinations(range(n), 2) if rng.random() < density]
     k = optimum(n, edges) + rng.choice((-2, -1, 0, 0, 1, 2))
-    return {"n": n, "edges": edges, "k": k}
+    return {"n": n, "vertices": list(range(n)), "edges": edges, "k": k}
 
 
 def candidate_test(cases, candidate):
@@ -261,6 +262,7 @@ def candidate_test(cases, candidate):
         source = case["source"]
         target = candidate_call(candidate, source)
         assert isinstance(target, dict) and isinstance(target.get("n"), int)
+        assert target.get("vertices") == list(range(target["n"]))
         assert target["n"] >= 1 and type(target.get("K")) is int and target["K"] >= 1
         assert isinstance(target.get("edges"), list)
         assert all(isinstance(e, list) and len(e) == 2 and all(type(v) is int for v in e)
