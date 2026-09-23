@@ -5,6 +5,7 @@ import itertools
 import json
 import subprocess
 import sys
+from functools import cache
 from pathlib import Path
 
 import z3
@@ -99,7 +100,7 @@ def target_solver(target):
     return solver, parent
 
 
-def target_answers(target, count=2):
+def z3_target_answers(target, count=2):
     solver, parent = target_solver(target)
     answers = []
     for _ in range(count):
@@ -116,6 +117,75 @@ def target_answers(target, count=2):
         answers.append(answer)
         solver.add(z3.Or(*(p != v for p, v in zip(parent, values))))
     return answers or ["NO-SOLUTION"]
+
+
+def target_answers(target, count=2):
+    """Exact connected-component subset DP for arbitrary target graphs."""
+    n = target["n"]
+    full = (1 << n) - 1
+    adjacency = [0] * n
+    for u, v in target["edges"]:
+        adjacency[u] |= 1 << v
+        adjacency[v] |= 1 << u
+
+    @cache
+    def cut(mask):
+        outside = full ^ mask
+        return sum((adjacency[v] & outside).bit_count() for v in range(n) if mask & (1 << v))
+
+    def components(mask):
+        result = []
+        while mask:
+            frontier = mask & -mask
+            component = 0
+            while frontier:
+                bit = frontier & -frontier
+                frontier ^= bit
+                vertex = bit.bit_length() - 1
+                component |= bit
+                frontier |= adjacency[vertex] & mask & ~component
+            result.append(component)
+            mask &= ~component
+        return result
+
+    @cache
+    def best(mask):
+        if not mask:
+            return 0, ()
+        value, roots = None, []
+        for root in range(n):
+            if not mask & (1 << root):
+                continue
+            pieces = components(mask ^ (1 << root))
+            candidate = sum(best(piece)[0] + cut(piece) for piece in pieces)
+            if value is None or candidate < value:
+                value, roots = candidate, [root]
+            elif candidate == value:
+                roots.append(root)
+        return value, tuple(roots)
+
+    optimum, _ = best(full)
+    if optimum > target["K"]:
+        return ["NO-SOLUTION"]
+
+    def build(second):
+        parent = [-1] * n
+
+        def visit(mask, ancestor):
+            roots = best(mask)[1]
+            root = roots[-1] if second else roots[0]
+            parent[root] = ancestor
+            for piece in components(mask ^ (1 << root)):
+                visit(piece, root)
+
+        visit(full, -1)
+        answer = {"parent": parent}
+        assert target_cost(target, answer) == optimum
+        return answer
+
+    first = build(False)
+    second = build(True)
+    return [first, second] if count > 1 and second != first else [first]
 
 
 def candidate_call(candidate, payload, extract=False):
@@ -168,6 +238,7 @@ def self_test(cases):
                     for parents in itertools.product(range(-1, n), repeat=n)
                 )
                 assert (target_answers(target, 1)[0] != "NO-SOLUTION") == brute_yes
+                assert (z3_target_answers(target, 1)[0] != "NO-SOLUTION") == brute_yes
     assert not valid_source({"n": 3, "edges": [[0, 2]], "k": 1},
                             {"order": [0, 1, 2]})
     print(f"Self-test passed: {len(cases)} source labels, target witnesses and NO-SOLUTION")
@@ -190,7 +261,7 @@ def candidate_test(cases, candidate):
         source = case["source"]
         target = candidate_call(candidate, source)
         assert isinstance(target, dict) and isinstance(target.get("n"), int)
-        assert target["n"] >= 1 and isinstance(target.get("K"), int)
+        assert target["n"] >= 1 and type(target.get("K")) is int and target["K"] >= 1
         assert isinstance(target.get("edges"), list)
         assert all(isinstance(e, list) and len(e) == 2 and all(type(v) is int for v in e)
                    and 0 <= e[0] < e[1] < target["n"] for e in target["edges"])
