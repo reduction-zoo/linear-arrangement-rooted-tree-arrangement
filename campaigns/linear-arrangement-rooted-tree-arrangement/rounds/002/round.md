@@ -42,12 +42,24 @@ The output counts and YES/NO splits are unchanged; see
 [verification](../../work/verification.md). No target solver result was treated
 as a proof of the size bound.
 
-Outcome: **supported**, pending focused independent re-review of the repaired
-encoding and proof bound. Experience extraction: no new entry; this is an
+The [focused review](../../reviews/encoding/review.md) confirmed the explicit
+array bound but found a separate CLI totality failure: Python's 4,300-digit
+integer conversion limit rejected legal large thresholds. The reviewer's
+failing check reported both an output-conversion failure at 4,300 input digits
+and an input-parse failure at 4,301 digits. The CLI now disables that cap
+before `json.load` and `json.dump`. The reviewer's check passed, and an
+additional [end-to-end check](../../work/evidence/large-integers/check.py)
+passed positive and negative large thresholds through F and G. Both finite
+candidate suites passed again, with unchanged output counts. This was a
+runtime boundary defect in the same encoding scope, not a new proof strategy.
+
+Outcome: **supported**, pending focused re-review of the integer-boundary
+repair. Experience extraction: no new entry; this is an
 encoding obligation specific to the repository contract. The existing
 [clique-spine entry](../../../../research/experience/clique-spine-charging.md)
 remains valid; its use here left the charging argument unchanged.
 
 ## Next action
 
-Commit this repair and request focused re-review, then write the manuscript.
+Commit the integer-boundary repair and request focused re-review, then write
+the manuscript.

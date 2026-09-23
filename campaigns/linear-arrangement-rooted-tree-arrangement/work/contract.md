@@ -8,7 +8,8 @@ and `K` is an integer. The vertex array is mandatory and must list all graph
 vertices, including isolated ones. Thus graph order is at most input length;
 the redundant `n` field must equal the array length. Numerical thresholds
 use ordinary JSON decimal notation as a binary-size encoding. Malformed inputs
-are outside the legal instance sets.
+are outside the legal instance sets. Thresholds have no fixed digit cap; the
+CLI configures Python's JSON integer conversion accordingly.
 
 Source output is `{"order": [v_1,...,v_n]}` when the listed permutation has
 edge-length sum at most `k`, or the JSON string `"NO-SOLUTION"` exactly when

@@ -35,6 +35,7 @@ def extract(source, target_solution):
 
 
 def main():
+    sys.set_int_max_str_digits(0)
     payload = json.load(sys.stdin)
     result = (extract(payload["source"], payload["target_solution"])
               if sys.argv[1:] == ["--extract"] else forward(payload))

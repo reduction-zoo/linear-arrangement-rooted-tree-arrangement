@@ -8,6 +8,8 @@ the repository root:
 uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work/check.py --self-test
 uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work/check.py --candidate campaigns/linear-arrangement-rooted-tree-arrangement/work/algorithm.py
 uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work/verify.py --candidate campaigns/linear-arrangement-rooted-tree-arrangement/work/algorithm.py
+uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/reviews/encoding/check_encoding.py
+uv run --locked python campaigns/linear-arrangement-rooted-tree-arrangement/work/evidence/large-integers/check.py
 ```
 
 Results on 2026-09-23 after the encoding repair: self-test passed; prepared suite passed 114 source
@@ -23,6 +25,13 @@ checked against the target definition before recovery.
 
 All 114 fixed graph meanings retained their seeds, edge sets, thresholds and
 optima; the source and target JSON now explicitly enumerate isolated vertices.
+The focused review exposed Python's default 4,300-digit integer conversion
+limit. The CLI now removes that limit before parsing. The reviewer's original
+failing check passed after repair, as did a separate end-to-end check using a
+4,300-digit positive threshold and a 4,301-digit negative threshold through
+both forward and recovery subprocess modes. The 114-case and 102-case suites
+also passed again. This tests the serialization boundary; it does not bound
+the mathematical input domain.
 The prepared suite covers source size up to five and constructed target size
 up to fifteen. Verification is finite, and the generic subset DP is exponential
 test machinery. Neither run proves the universal cost identity; that obligation

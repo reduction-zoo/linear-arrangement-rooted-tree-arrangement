@@ -72,6 +72,8 @@ and explicitly lists `n+m=O(n²)` target vertices, in polynomial time and
 `O(log(n+1)+bitlength(k))` bits. The recovery map follows at most `n+m` parent
 arcs for each original vertex and sorts `n` depths, using
 `O(n(n+m)+n log n)` operations on polynomial-size integers. No solver or state
-from the forward process is used. This is a newly derived argument in this
+from the forward process is used. The CLI removes Python's default decimal
+integer digit cap before JSON parsing and writing, so the executable map is
+defined for thresholds of arbitrary finite bit length. This is a newly derived argument in this
 campaign; the 1979 Garey–Johnson listing and upstream issue are context, not
 the source of this proof.
