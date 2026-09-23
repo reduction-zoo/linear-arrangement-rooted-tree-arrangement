@@ -26,14 +26,20 @@ Current claim: [clique-spine reduction](work/proof.md) with executable
 negative-threshold and trivial-size cases. [Verification](work/verification.md)
 passed 114 prepared instances plus 102 separately enumerated instances;
 universal correctness rests on the proof, not those finite counts. Correctness
-is pending independent review. Novelty relative to Gavril 1977 remains unknown
+received an [independent advance review](reviews/initial/review.md) at commit
+`4f88baf`. An executable-encoding repair is now in progress: the source JSON
+must list vertices explicitly to justify `n<=|x|`, and the target JSON must
+do the same. This proof-bound repair requires focused re-review. Novelty
+relative to Gavril 1977 remains unknown
 because the original paper has not been checked. Significance: executable
 witness recovery addresses the fixed gap; practical overhead is unmeasured.
 Prospects of completing this candidate within the remaining budget: high,
 uncalibrated, based on the short cost proof and passing checks.
 
-Next action: commit round 001, then fresh-context independent review.
+Next action: complete round 002 explicit-encoding repair, rerun checks, and
+request focused re-review before writing.
 
 | Round | Mechanism / scope | First check | Outcome | Evidence |
 |---|---|---|---|---|
 | 001 | Original-vertex clique spine plus one edge vertex per source edge; first mechanism | 114-case injected target solve and recovery | supported, review pending | [round 001](rounds/001/round.md) |
+| 002 | Explicit vertex-list encoding; closes the output-size proof premise without changing the mathematical gadget | Existing 114-case corpus gate must still pass with explicit vertices | in progress | [round 002](rounds/002/round.md) |
