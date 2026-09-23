@@ -53,13 +53,17 @@ passed positive and negative large thresholds through F and G. Both finite
 candidate suites passed again, with unchanged output counts. This was a
 runtime boundary defect in the same encoding scope, not a new proof strategy.
 
-Outcome: **supported**, pending focused re-review of the integer-boundary
-repair. Experience extraction: no new entry; this is an
+The [final fresh-context review](../../reviews/final/review.md) advanced the
+repaired candidate after rerunning the original failing check and an additional
+large-integer subprocess check. The reviewed result is presented in the
+[compiled four-page paper](../../work/manuscript.pdf); its figure and every PDF
+page were inspected. No construction or proof strategy changed after review.
+
+Outcome: **supported**, independently advanced. Experience extraction: no new entry; this is an
 encoding obligation specific to the repository contract. The existing
 [clique-spine entry](../../../../research/experience/clique-spine-charging.md)
 remains valid; its use here left the charging argument unchanged.
 
 ## Next action
 
-Commit the integer-boundary repair and request focused re-review, then write
-the manuscript.
+Campaign closeout: hand the reviewed proof and paper to a human expert.

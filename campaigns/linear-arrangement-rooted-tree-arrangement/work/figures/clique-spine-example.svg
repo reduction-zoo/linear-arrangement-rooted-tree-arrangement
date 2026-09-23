@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="285" viewBox="0 0 800 285">
+  <rect width="800" height="285" fill="white"/>
+  <g font-family="Libertinus Sans, Arial, sans-serif" fill="#111" text-anchor="middle">
+    <text x="160" y="28" font-size="24" font-weight="bold">Source path</text>
+    <text x="550" y="28" font-size="24" font-weight="bold">Target graph</text>
+  </g>
+  <g stroke="#111" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M83 145 H137 M183 145 H237"/>
+    <path d="M438 127 L532 63 M568 63 L662 127"/>
+    <path d="M444 145 H656" stroke-dasharray="10 7"/>
+    <path d="M431 163 L470 208 M541 72 L482 208 M559 72 L618 208 M669 163 L630 208"/>
+  </g>
+  <g fill="white" stroke="#111" stroke-width="3">
+    <circle cx="60" cy="145" r="23"/><circle cx="160" cy="145" r="23"/><circle cx="260" cy="145" r="23"/>
+    <circle cx="420" cy="145" r="23"/><circle cx="550" cy="55" r="23"/><circle cx="680" cy="145" r="23"/>
+    <rect x="437" y="207" width="66" height="42" rx="4"/>
+    <rect x="597" y="207" width="66" height="42" rx="4"/>
+  </g>
+  <g font-family="Libertinus Sans, Arial, sans-serif" font-size="21" fill="#111" text-anchor="middle" dominant-baseline="middle">
+    <text x="60" y="146">0</text><text x="160" y="146">1</text><text x="260" y="146">2</text>
+    <text x="420" y="146">0</text><text x="550" y="56">1</text><text x="680" y="146">2</text>
+    <text x="470" y="229">g01</text><text x="630" y="229">g12</text>
+  </g>
+</svg>

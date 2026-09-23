@@ -17,7 +17,8 @@ General counting lemma, proved for a two-edge gadget in
 [round 001](../../campaigns/linear-arrangement-rooted-tree-arrangement/rounds/001/round.md)
 and [proof](../../campaigns/linear-arrangement-rooted-tree-arrangement/work/proof.md).
 Finite checks are in [verification](../../campaigns/linear-arrangement-rooted-tree-arrangement/work/verification.md).
-Independent review is pending. This entry was created 2026-09-23 in the
+Independent [final review](../../campaigns/linear-arrangement-rooted-tree-arrangement/reviews/final/review.md)
+advanced the reduction. This entry was created 2026-09-23 in the
 campaign repository; promotion to the board's local collection is pending
 separate authorization.
 

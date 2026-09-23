@@ -24,25 +24,38 @@ Current claim: [clique-spine reduction](work/proof.md) with executable
 [forward and recovery maps](work/algorithm.py). The derived cost identity is
 `OPT_target = n(n²-1)/6 + OPT_source + 2m` in the main case, with explicit
 negative-threshold and trivial-size cases. [Verification](work/verification.md)
-passed 114 prepared instances plus 102 separately enumerated instances;
-universal correctness rests on the proof, not those finite counts. Correctness
-received an [independent advance review](reviews/initial/review.md) at commit
-`4f88baf`. Round 002 repaired the executable encoding: both graphs now list
-vertices explicitly, including isolated ones, and the polynomial bit bound
-uses that actual representation. All prepared and separate checks passed again.
-The [focused review](reviews/encoding/review.md) found a large-integer CLI
-failure, which is repaired and checked end to end; focused re-review of that
-last change remains. Novelty
-relative to Gavril 1977 remains unknown
-because the original paper has not been checked. Significance: executable
-witness recovery addresses the fixed gap; practical overhead is unmeasured.
-Prospects of completing this candidate within the remaining budget: high,
-uncalibrated, based on the short cost proof and passing checks.
+passed 114 prepared instances plus 102 separately enumerated instances and
+354 actual target outputs total, including positive, negative and alternate
+tree answers. Large-integer CLI cases also passed. Universal correctness rests
+on the proof, not these finite counts. The [initial independent review](reviews/initial/review.md)
+advanced the mathematical result. Round 002 repaired the explicit-graph
+encoding and arbitrary-length integer I/O, prompted by the
+[focused review](reviews/encoding/review.md). The
+[final fresh-context review](reviews/final/review.md) advanced the repaired
+candidate. The [four-page Typst paper](work/manuscript.pdf) was compiled and
+visually inspected page by page. Status: **ready_for_expert_review**, an agent
+assessment rather than human certification.
 
-Next action: commit the large-integer repair and obtain focused re-review
-before writing.
+Novelty of this exact gadget relative to Gavril 1977 remains unknown because
+the original proof was unavailable. The reduction's existence and hardness
+consequence are classical. Significance here is the explicit F/G rule and
+all-output recovery for the fixed question. The dense target's practical
+solver cost is unmeasured. Earlier prospect assessment before review: high,
+uncalibrated, based on the short cost proof and passing finite checks. The
+actual outcome is a reviewed candidate within two rounds.
+
+Closeout: 20 authorized rounds, 2 used, 18 unused. One distinct mathematical
+construction mechanism was attempted; round 002 repaired its executable
+encoding and proof bound. Experience extraction: one distinct
+[entry](../../research/experience/clique-spine-charging.md) created, the same
+entry updated once, and one local entry pending promotion to the board's
+uncommitted collection. The board was not edited. No formal proof was
+requested; Mathlib and CP-SAT remain unavailable but did not block this
+result. Next decision: human expert review and, separately, a historical
+comparison with Gavril's primary proof if obtained. Publication and board
+updates require human authorization.
 
 | Round | Mechanism / scope | First check | Outcome | Evidence |
 |---|---|---|---|---|
 | 001 | Original-vertex clique spine plus one edge vertex per source edge; first mechanism | 114-case injected target solve and recovery | supported; initial review advanced | [round 001](rounds/001/round.md) |
-| 002 | Explicit graph encoding and arbitrary-length integer I/O; closes the executable size and totality proof premise without changing the gadget | Existing 114-case corpus gate must still pass with explicit vertices | supported after repair; focused re-review pending | [round 002](rounds/002/round.md) |
+| 002 | Explicit graph encoding and arbitrary-length integer I/O; closes the executable size and totality proof premise without changing the gadget | Existing 114-case corpus gate must still pass with explicit vertices | supported; final review advanced | [round 002](rounds/002/round.md) |
