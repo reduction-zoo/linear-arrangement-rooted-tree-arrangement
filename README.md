@@ -3,8 +3,8 @@
 Independent research campaign. A complete clique-spine reduction with
 forward construction and recovery is [ready for expert review](campaigns/linear-arrangement-rooted-tree-arrangement/state.md).
 The exact gadget's historical novelty remains unresolved because Gavril's
-1977 proof was unavailable for comparison. Nothing has been published or
-changed on the board.
+1977 proof was unavailable for comparison. The public history archive is
+[reduction-zoo/linear-arrangement-rooted-tree-arrangement](https://github.com/reduction-zoo/linear-arrangement-rooted-tree-arrangement).
 
 [Question](campaigns/linear-arrangement-rooted-tree-arrangement/question.md) ·
 [State](campaigns/linear-arrangement-rooted-tree-arrangement/state.md) ·
